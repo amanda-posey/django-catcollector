@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Cat
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def about(request):
@@ -9,6 +11,11 @@ def about(request):
 
 def index(request):
     return render(request, 'index.html')
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    cats = Cat.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'cats': cats})
 
 # Before we create our next function, we are going to make a class
 
