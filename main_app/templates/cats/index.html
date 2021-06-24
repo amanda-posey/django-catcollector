@@ -1,5 +1,8 @@
+
 {% extends 'base.html' %}
 {% block content %}
+    <a href="/cats/create">Add a New Cat!</a>
+    <hr />
     {% for cat in cats %}
         <p>Name: {{ cat.name }}</p>
         {% if cat.age > 0 %}
